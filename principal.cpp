@@ -42,11 +42,11 @@ Principal::~Principal()
 void Principal::paintEvent(QPaintEvent *event)
 {
     // Crear el painter de la ventana principal
-    QPainter painter(this);
+    ///QPainter painter(this);
     // Dibujar la imagen
-    painter.drawImage(0, 0, *mImagen);
+    //painter.drawImage(0, 0, *mImagen);
     // Acepatr el evento
-    event->accept();
+    //event->accept();
 }
 
 void Principal::mousePressEvent(QMouseEvent *event)
