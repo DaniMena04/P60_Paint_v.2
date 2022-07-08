@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -46,10 +46,11 @@
     <property name="title">
      <string>Forma</string>
     </property>
-    <addaction name="actionLineas"/>
     <addaction name="actionLibre"/>
+    <addaction name="actionLineas"/>
     <addaction name="actionRect_nculos"/>
     <addaction name="actionCircunferencias"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuEstilo"/>
