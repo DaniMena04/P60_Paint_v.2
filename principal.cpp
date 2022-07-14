@@ -104,7 +104,21 @@ void Principal::on_actionAncho_triggered()
 
 void Principal::on_actionSalir_triggered()
 {
-    this->close();
+    if(!mImagen->isNull()){
+        QMessageBox::StandardButton reply = QMessageBox::question(
+                     this,
+                     "Salir","Desea guardar el archivo",
+                    QMessageBox::Save | QMessageBox::Cancel);
+
+        if(reply == QMessageBox::Save ) {
+            on_actionGuardar_triggered();
+        } else{
+            this->close();
+        }
+    }else{
+        this->close();
+    }
+
 }
 
 void Principal::on_actionColor_triggered()
@@ -116,9 +130,25 @@ void Principal::on_actionColor_triggered()
 
 void Principal::on_actionNuevo_triggered()
 {
-    mImagen->fill(Qt::white);
-    mNumLineas = 0;
-    update();
+    if(!mImagen->isNull()){
+        QMessageBox::StandardButton reply = QMessageBox::question(
+                     this,
+                     "Nuevo Archivo","Desea guardar el archivo",
+                    QMessageBox::Save | QMessageBox::Cancel);
+
+        if(reply == QMessageBox::Save ) {
+            on_actionGuardar_triggered();
+        } else{
+            mImagen->fill(Qt::white);
+            mNumLineas = 0;
+            update();
+        }
+    }else{
+        mImagen->fill(Qt::white);
+        mNumLineas = 0;
+        update();
+    }
+
 }
 
 void Principal::on_actionGuardar_triggered()
@@ -142,11 +172,6 @@ void Principal::on_actionGuardar_triggered()
 void Principal::on_actionLineas_triggered()
 {
 
-//    qDebug() << "Punto X1: " << mInicial.x();
-//    qDebug() << "Punto Y1: " << mInicial.y();
-//    qDebug() << "Punto X2: " << mFinal.x();
-//    qDebug() << "Punto Y2: " << mFinal.y();
-
     QPen pincel;
     pincel.setColor(mColor);
     pincel.setWidth(mAncho);
@@ -164,14 +189,10 @@ void Principal::on_actionRect_nculos_triggered()
     QPen pincel;
      pincel.setColor(mColor);
      pincel.setWidth(mAncho);
-     // Dibujar una linea
+
      mPainter->setPen(pincel);
      mPainter->drawRect(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
 
-//     qDebug()<<"Eje de las x punto inicial: "<<mInicial.x()<<" rs"<<mInicial.rx();
-//     qDebug()<<"Eje de las y punto inicial: "<<mInicial.y()<<" rs"<<mInicial.ry();
-//     qDebug()<<"Eje de las x punto Final: "<<mFinal.x()<<" rs"<<mFinal.rx();
-//     qDebug()<<"Eje de las y punto Final: "<<mFinal.y()<<" rs"<<mFinal.ry();
      update();
 }
 
@@ -181,19 +202,10 @@ void Principal::on_actionCircunferencias_triggered()
     QPen pincel;
     pincel.setColor(mColor);
     pincel.setWidth(mAncho);
-    // Dibujar una linea
+
     mPainter->setPen(pincel);
 
-//    mCentro.setX(mInicial.rx());
-//    mCentro.setY(mInicial.ry());
-    mPainter->drawEllipse(mInicial.x(),mInicial.y(),mFinal.x()-mInicial.x(),mFinal.y()-mInicial.y());
-//    mPainter->drawEllipse(mInicial.y(),mFinal.y(),mInicial.y(),mFinal.y());
-//    mPainter->drawEllipse(QRect(0,0,mInicial.y(),mFinal.y()));
-//    mPainter->drawEllipse(100,100,100,100);
-//    qDebug()<<"Eje de las x punto inicial: "<<mInicial.x()<<" rs"<<mInicial.rx();
-//    qDebug()<<"Eje de las y punto inicial: "<<mInicial.y()<<" rs"<<mInicial.ry();
-//    qDebug()<<"Eje de las x punto Final: "<<mFinal.x()<<" rs"<<mFinal.rx();
-//    qDebug()<<"Eje de las y punto Final: "<<mFinal.y()<<" rs"<<mFinal.ry();
+    mPainter->drawEllipse(mInicial.x(),mInicial.y(),mFinal.x()- mInicial.x(),mFinal.y()- mInicial.y());
     update();
 }
 

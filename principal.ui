@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Principal</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Recursos/Imagenes/Recursos.qrc">
+    <normaloff>:/new/prefix1/paint-palette.png</normaloff>:/new/prefix1/paint-palette.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -121,6 +125,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Recursos/Imagenes/Recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>
